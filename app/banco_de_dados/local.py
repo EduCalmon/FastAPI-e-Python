@@ -1,12 +1,12 @@
 import sqlite3
-from contextlib import contextmanager
+from contextlib import contextmanager # Propriedade do python
 
 class BancoDeDadosLocal():
-    def __init__(self,nome_do_arquivo='techlog.db'):
+    def __init__(self,nome_do_arquivo='techlog.db'): # Código de inicialização do banco de dados
         self.nome_do_arquivo = nome_do_arquivo
         self.inicializar_banco()
 
-    @contextmanager
+    @contextmanager # Sem isso, a linha 22 não funciona.
     def conectar(self):
         conexao = sqlite3.connect(self.nome_do_arquivo)
         try:
@@ -25,9 +25,9 @@ class BancoDeDadosLocal():
                 """
                     CREATE TABLE IF NOT EXISTS clientes(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    name TEXT NOT NULL,
+                    nome TEXT NOT NULL,
                     email TEXT NOT NULL,
-                    telefone TEXT NOT NULL
+                    telefone TEXT NOT NULL)
                 """
             )
             conexao.commit()
